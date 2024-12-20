@@ -3,7 +3,9 @@ package com.example.coffeemasters
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,7 +31,16 @@ private fun Offer_Preview() {
 
 @Preview(showBackground = true)
 @Composable
-fun OffersPage() {
+private fun OffersPage_Preview() {
+    OffersPage(PaddingValues(0.dp))
+}
+
+@Composable
+fun OffersPage(padding: PaddingValues) {
+    Box(modifier = Modifier
+        .padding(padding)
+        .fillMaxSize()
+    )
     Column(modifier = Modifier
         .verticalScroll(rememberScrollState())
     ) {
