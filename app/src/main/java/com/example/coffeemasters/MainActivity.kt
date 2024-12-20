@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,29 +34,21 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun FirstComposable() {
-//    Column(){
-//        Text(text = "Hello Again",
-//            modifier = Modifier
-//                .background(Color.Cyan)
-//                .padding(20.dp)
-//        )
-//
-//        Text(text = "Heyy",
-//            modifier = Modifier
-//                .background(Color.Red)
-//                .padding(20.dp))
-//    }
-
+    var name = remember {
+        mutableStateOf("")
+    }
     Row(){
-        Text(text = "Heyy",
+        Text(text = "Heyy ${name.value}",
             modifier = Modifier
                 .background(Color.Red)
                 .padding(20.dp))
 
-        Text(text = "Hello Again",
-            modifier = Modifier
-                .background(Color.Cyan)
-                .padding(20.dp)
+        TextField(
+            value = name.value,
+            onValueChange = {
+                name.value = it
+            },
+            label = { Text("Name")}
         )
     }
 }
