@@ -1,6 +1,7 @@
 package com.example.coffeemasters
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,18 +12,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.coffeemasters.pages.InfoPage
 import com.example.coffeemasters.pages.MenuPage
 import com.example.coffeemasters.pages.OffersPage
 import com.example.coffeemasters.pages.OrderPage
-import com.example.coffeemasters.ui.theme.CoffeeMastersTheme
 
 
 @Composable
 fun AppTitle() {
-    Box(modifier = Modifier.fillMaxWidth(),
+    Box(modifier = Modifier.fillMaxWidth()
+        .background(Color.Red),
         contentAlignment = Alignment.Center) {
         Image(
             painter = painterResource(id = R.drawable.logo),
