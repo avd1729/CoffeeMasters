@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.coffeemasters.pages.OffersPage
 import com.example.coffeemasters.ui.theme.CoffeeMastersTheme
 
 @Preview
@@ -40,14 +42,17 @@ fun App() {
 
     // State hoisting
     var selectedRoute = remember {
-        mutableStateOf(Routes.MenuPage.route)
+        mutableStateOf(Routes.OffersPage.route)
     }
     Scaffold(
         topBar = {
             TopAppBar(title = { AppTitle() })
         },
         content = { padding -> // Add padding parameter
-            OffersPage(padding) // Pass padding to OffersPage
+           when(selectedRoute.value){
+               Routes.OffersPage.route -> OffersPage(padding)
+               Routes.MenuPage.route -> Text("Menu page")
+           }
         },
         bottomBar = {
             NavBar(
