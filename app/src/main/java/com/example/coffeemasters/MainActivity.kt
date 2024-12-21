@@ -16,15 +16,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import com.example.coffeemasters.ui.theme.CoffeeMastersTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var dataManager = ViewModelProvider(this)
+            .get(DataManager::class.java)
         enableEdgeToEdge()
         setContent {
             CoffeeMastersTheme {
-                FirstComposable()
+               App(dataManager)
             }
         }
     }

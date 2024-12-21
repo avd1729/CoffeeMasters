@@ -1,13 +1,21 @@
 package com.example.coffeemasters
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
-class DataManager {
+class DataManager(app: Application) : AndroidViewModel(app) {
     var menu: List<Category> by mutableStateOf(listOf())
     var cart: List<ItemInCart> by mutableStateOf(listOf())
 
+
+    init {
+        fetchData()
+    }
     fun cartAdd(product: Product){
         var found = false
         cart.forEach{
@@ -31,6 +39,12 @@ class DataManager {
         val aux = cart.toMutableList()
         aux.removeAll{it.product.id == product.id}
         cart = listOf(*aux.toTypedArray())
+    }
+
+    private fun fetchData() {
+       viewModelScope.launch {
+           menu = API.menuService.fetchMenu()
+       }
     }
 
 

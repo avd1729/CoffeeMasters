@@ -20,17 +20,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.coffeemasters.DataManager
 import com.example.coffeemasters.Product
 import com.example.coffeemasters.R
 import com.example.coffeemasters.ui.theme.Alternative1
 import com.example.coffeemasters.ui.theme.CardBackground
 
-@Preview
+
 @Composable
-fun MenuPage(){
+fun MenuPage(dataManager: DataManager){
     LazyColumn {
+        item {
+            Text("${dataManager.menu.count()}")
+        }
         items(5){
            Card(
                elevation = CardDefaults.cardElevation(

@@ -19,13 +19,6 @@ import com.example.coffeemasters.pages.OffersPage
 import com.example.coffeemasters.pages.OrderPage
 import com.example.coffeemasters.ui.theme.CoffeeMastersTheme
 
-@Preview
-@Composable
-fun App_Preview() {
-    CoffeeMastersTheme {
-        App()
-    }
-}
 
 @Composable
 fun AppTitle() {
@@ -40,7 +33,7 @@ fun AppTitle() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun App() {
+fun App(dataManager: DataManager) {
 
     // State hoisting
     var selectedRoute = remember {
@@ -53,9 +46,9 @@ fun App() {
         content = { padding -> // Add padding parameter
            when(selectedRoute.value){
                Routes.OffersPage.route -> OffersPage(padding)
-               Routes.MenuPage.route -> MenuPage()
-               Routes.InfoPage.route -> InfoPage()
-               Routes.OrderPage.route -> OrderPage()
+               Routes.MenuPage.route -> MenuPage(dataManager)
+               Routes.InfoPage.route -> InfoPage(dataManager)
+               Routes.OrderPage.route -> OrderPage(dataManager)
            }
         },
         bottomBar = {
