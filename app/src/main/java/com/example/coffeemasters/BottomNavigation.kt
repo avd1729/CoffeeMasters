@@ -14,7 +14,6 @@ import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,8 +23,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.coffeemasters.ui.theme.Alternative1
+import com.example.coffeemasters.ui.theme.CardBackground
 import com.example.coffeemasters.ui.theme.Primary
+import com.example.coffeemasters.ui.theme.Ternary
 
 data class NavPage(var name: String, var icon: ImageVector, var route: String)
 
@@ -52,7 +52,7 @@ fun NavBar(selectedRoute: String = Routes.MenuPage.route, onCallBack: (String) -
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
+            .background(Ternary)
             .padding(16.dp)
     ) {
         for(page in Routes.pages){
@@ -75,7 +75,7 @@ fun NavBarItem(page: NavPage, selected: Boolean = false, modifier: Modifier) {
             imageVector = page.icon,
             contentDescription = page.name,
             colorFilter = ColorFilter.tint(
-                if (selected) Alternative1 else Primary
+                if (selected) CardBackground else Primary
             ),
             modifier = Modifier
                 .padding(bottom = 8.dp)
@@ -83,7 +83,7 @@ fun NavBarItem(page: NavPage, selected: Boolean = false, modifier: Modifier) {
         )
         Text(page.name,
             fontSize = 12.sp,
-            color = if (selected) Alternative1 else Primary
+            color = if (selected) CardBackground else Primary
         )
     }
 }
