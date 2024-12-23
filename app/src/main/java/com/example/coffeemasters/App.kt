@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
@@ -37,27 +38,32 @@ fun AppTitle() {
 fun App(dataManager: DataManager) {
 
     // State hoisting
-    var selectedRoute = remember {
+    val selectedRoute = remember {
         mutableStateOf(Routes.OffersPage.route)
     }
+
     Scaffold(
         topBar = {
             TopAppBar(title = { AppTitle() })
         },
-        content = { padding -> // Add padding parameter
-           when(selectedRoute.value){
-               Routes.OffersPage.route -> OffersPage(padding)
-               Routes.MenuPage.route -> MenuPage(dataManager)
-               Routes.InfoPage.route -> InfoPage(dataManager)
-               Routes.OrderPage.route -> OrderPage(dataManager)
-           }
+        content = { padding ->
+            // Apply the padding to the content to ensure it's not overlapped
+            Box(modifier = Modifier.padding(padding)) {
+                when (selectedRoute.value) {
+                    Routes.OffersPage.route -> OffersPage(padding)
+                    Routes.MenuPage.route -> MenuPage(dataManager)
+                    Routes.InfoPage.route -> InfoPage(dataManager)
+                    Routes.OrderPage.route -> OrderPage(dataManager)
+                }
+            }
         },
         bottomBar = {
             NavBar(
                 selectedRoute = selectedRoute.value,
                 onCallBack = { newRoute ->
-                selectedRoute.value = newRoute
-            })
+                    selectedRoute.value = newRoute
+                }
+            )
         }
     )
 }
