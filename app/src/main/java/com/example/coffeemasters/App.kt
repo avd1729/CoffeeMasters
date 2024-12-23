@@ -41,7 +41,7 @@ fun App(dataManager: DataManager) {
 
     // State hoisting
     val selectedRoute = remember {
-        mutableStateOf(Routes.OffersPage.route)
+        mutableStateOf(Routes.MenuPage.route)
     }
 
     Scaffold(
